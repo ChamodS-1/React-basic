@@ -12,33 +12,49 @@ class Counter extends Component {
     this.setState({count:this.state.count+1})
   }
 
+  handleCountDecrease= () =>{
+    //this.state.count+=1;
+    if (this.state.count===0){
+      return <h1>gjghj</h1>
+    }else{
+      this.setState({count:this.state.count-1})
+    }
+    
+  }
+
   render() {
     return (
       <React.Fragment>
-        <span className={this.classChange()}>{this.onclickCount()}</span>
+       <div>
         <button
           onClick={this.handleCount}
-          className="btn btn-secondary btn-lg"
+          className="btn btn-secondary btn-lg m-2"
         >
           Increment
         </button>
-        {this.selected()}
+        <button onClick={this.handleCountDecrease} className="btn btn-primary btn-lg m">Decrement</button>
+        </div>
+        <span className={this.classChange()}>{this.onclickCount()}</span>
+
       </React.Fragment>
     );
   }
 
   onclickCount() {
-    if (this.state.count == 0) {
-      return <h5>Zero</h5>;
+    if (this.state.count === 0) {
+      return 'Zero';
     } else {
-      return <h5>{this.state.count}</h5>;
+      return this.state.count;
     }
   }
 
 
+  changeClss(){
+    return this.state.count===0 ? 'testClass' : 'testClass1';
+  }
 
   classChange() {
-    let classe = "badge m-2 badge-";
+    let classe = "badge m-2 class1 badge-" ;
     classe += this.state.count === 0 ? "warning" : "primary";
     return classe;
   }
